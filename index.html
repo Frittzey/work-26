@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOPE — For the ones still holding on</title>
+  <meta name="description" content="A quiet place for people who are losing hope in the dreams they still hold onto. You are not alone." />
+  <meta property="og:title" content="HOPE — For the ones still holding on" />
+  <meta property="og:description" content="A quiet place for people who are losing hope in the dreams they still hold onto. You are not alone." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/2c2522/f7f4ef?text=HOPE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HOPE — For the ones still holding on" />
+  <meta name="twitter:description" content="A quiet place for people who are losing hope in the dreams they still hold onto." />
+  <meta name="twitter:image" content="https://via.placeholder.com/1200x630/2c2522/f7f4ef?text=HOPE" />
+  <!-- Favicon light -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23f7f4ef'/><text y='.72em' x='50%' text-anchor='middle' font-size='55' font-family='Georgia,serif' fill='%232c2522'>H</text></svg>" media="(prefers-color-scheme: light)" />
+  <!-- Favicon dark -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a1714'/><text y='.72em' x='50%' text-anchor='middle' font-size='55' font-family='Georgia,serif' fill='%23f0ebe3'>H</text></svg>" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <span class="loader-text">HOPE</span>
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <div class="progress-bar" id="progressBar" role="progressbar" aria-label="Reading progress"></div>
+  <div class="grain"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">HOPE</a>
+      <nav class="nav" id="nav">
+        <a href="#feel">How You Feel</a>
+        <a href="#reminders">Reminders</a>
+        <a href="#letter">Future Letter</a>
+        <a href="#community">Community</a>
+        <a href="#share">Share</a>
+        <a href="#resources">Resources</a>
+        <a href="#hold-on">Hold On</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-backdrop" id="navBackdrop"></div>
+
+  <!-- First-visit onboarding tip -->
+  <div class="onboarding-tip" id="onboardingTip" hidden>
+    <p>Save reminders that help you — click the bookmark icon on any card.</p>
+    <button type="button" id="dismissTip" aria-label="Dismiss">Got it</button>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-content">
+        <p class="hero-eyebrow" id="welcomeMessage">Welcome. You are safe here.</p>
+        <h1 class="hero-title">
+          It’s okay if your dream<br />
+          feels far away right now.
+        </h1>
+        <p class="hero-sub">
+          A peaceful digital sanctuary for people going through difficult seasons.
+          You don’t have to be strong today. You just have to keep breathing.
+        </p>
+        <div class="hero-cta">
+          <a href="#feel" class="btn btn-primary">How are you feeling?</a>
+          <a href="#letter" class="btn btn-ghost">Write to future you</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Quote -->
+    <section class="daily-quote">
+      <div class="container">
+        <p class="quote-label">A quiet thought for today</p>
+        <blockquote id="dailyQuote">“The dream doesn’t need you to be perfect. It just needs you to not put it down completely.”</blockquote>
+      </div>
+    </section>
+
+    <!-- How are you feeling -->
+    <section class="feel" id="feel">
+      <div class="container">
+        <div class="section-header">
+          <h2>How are you feeling today?</h2>
+          <p>Choose what feels closest. There’s no wrong answer.</p>
+        </div>
+        <div class="feel-grid" id="feelGrid">
+          <button class="feel-card" data-feeling="hopeful">
+            <span class="feel-emoji">🌱</span>
+            <strong>Hopeful</strong>
+            <span>I’m beginning to believe again.</span>
+          </button>
+          <button class="feel-card" data-feeling="tired">
+            <span class="feel-emoji">🌙</span>
+            <strong>Tired</strong>
+            <span>I’m exhausted from trying.</span>
+          </button>
+          <button class="feel-card" data-feeling="confused">
+            <span class="feel-emoji">🌫️</span>
+            <strong>Confused</strong>
+            <span>I don’t know what comes next.</span>
+          </button>
+          <button class="feel-card" data-feeling="discouraged">
+            <span class="feel-emoji">🌧️</span>
+            <strong>Discouraged</strong>
+            <span>I’m struggling to believe in myself.</span>
+          </button>
+        </div>
+        <div class="feel-response" id="feelResponse" hidden>
+          <p id="feelMessage"></p>
+          <button class="btn btn-ghost" id="feelReset">Choose again</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to use -->
+    <section class="how-to">
+      <div class="container">
+        <div class="how-to-box">
+          <h3>How to use this website</h3>
+          <ul>
+            <li>Read slowly. There’s no rush here.</li>
+            <li>Save or copy any reminder that speaks to you.</li>
+            <li>Write a letter to your future self if you want.</li>
+            <li>Come back whenever the dream feels heavy again.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="why" id="why">
+      <div class="container why-grid">
+        <div class="why-text">
+          <h2>Why this exists</h2>
+          <p>Most people only talk about the version of the journey that looks successful. The quiet middle part — the part where you doubt everything — rarely gets space.</p>
+          <p>HOPE was made for that middle part. For the nights when the dream feels heavier than it used to. For the mornings when getting out of bed already feels like enough.</p>
+          <p>You are not weak for feeling this way. You are human.</p>
+          <div class="personal-note" id="personalNote">
+            <p contenteditable="false" id="personalText"><em>I built this because I’ve been in that quiet, heavy place too. If these words reach even one person who needed them today, then this small project did its job.</em></p>
+            <p class="note-author">— <span id="authorName">[Your Name]</span></p>
+            <button class="edit-btn" id="editNoteBtn">Edit</button>
+          </div>
+        </div>
+        <div class="why-card">
+          <blockquote>“The dream doesn’t need you to be perfect. It just needs you to not put it down completely.”</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reminders -->
+    <section class="reminders" id="reminders">
+      <div class="container">
+        <div class="section-header">
+          <h2>Things worth remembering</h2>
+          <p>Small truths for heavy days. Bookmark or copy any that help.</p>
+        </div>
+        <div class="reminders-grid">
+          <article class="reminder" data-id="1">
+            <div class="reminder-actions">
+              <button class="copy-btn" title="Copy this reminder"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+              <button class="save-btn" title="Save this reminder"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+            </div>
+            <span class="reminder-num">01</span>
+            <h3>Progress is often invisible</h3>
+            <p>Just because you can’t see the change yet doesn’t mean nothing is happening. Roots grow in the dark.</p>
+          </article>
+          <article class="reminder" data-id="2">
+            <div class="reminder-actions">
+              <button class="copy-btn" title="Copy this reminder"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+              <button class="save-btn" title="Save this reminder"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+            </div>
+            <span class="reminder-num">02</span>
+            <h3>Rest is not quitting</h3>
+            <p>Putting the dream down for a while so you can breathe is not the same as abandoning it.</p>
+          </article>
+          <article class="reminder" data-id="3">
+            <div class="reminder-actions">
+              <button class="copy-btn" title="Copy this reminder"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+              <button class="save-btn" title="Save this reminder"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+            </div>
+            <span class="reminder-num">03</span>
+            <h3>You can start again</h3>
+            <p>There is no deadline that makes you “too late.” Many people rebuild the same dream more than once.</p>
+          </article>
+          <article class="reminder" data-id="4">
+            <div class="reminder-actions">
+              <button class="copy-btn" title="Copy this reminder"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+              <button class="save-btn" title="Save this reminder"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+            </div>
+            <span class="reminder-num">04</span>
+            <h3>Comparison is a thief</h3>
+            <p>Someone else’s chapter 20 has nothing to do with your chapter 3. Stay on your own page.</p>
+          </article>
+          <article class="reminder" data-id="5">
+            <div class="reminder-actions">
+              <button class="copy-btn" title="Copy this reminder"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+              <button class="save-btn" title="Save this reminder"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+            </div>
+            <span class="reminder-num">05</span>
+            <h3>Small steps still count</h3>
+            <p>One honest hour of work, one kind decision, one day of not giving up — these are not small.</p>
+          </article>
+          <article class="reminder" data-id="6">
+            <div class="reminder-actions">
+              <button class="copy-btn" title="Copy this reminder"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
+              <button class="save-btn" title="Save this reminder"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg></button>
+            </div>
+            <span class="reminder-num">06</span>
+            <h3>You are allowed to change</h3>
+            <p>Sometimes the dream itself needs to evolve. That is not failure. That is growth.</p>
+          </article>
+        </div>
+        <div class="saved-panel" id="savedPanel">
+          <div class="saved-header">
+            <h3>Your saved reminders</h3>
+            <div class="saved-actions">
+              <button class="btn-text" id="printReminders" type="button" title="Print saved reminders">Print</button>
+              <button class="clear-saved" id="clearSaved" type="button">Clear all</button>
+            </div>
+          </div>
+          <div id="savedList"></div>
+          <div class="saved-empty" id="savedEmpty">
+            <p>No reminders saved yet.</p>
+            <p class="saved-empty-hint">Click the bookmark icon on any reminder above to save it here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Letter to future self -->
+    <section class="letter" id="letter">
+      <div class="container">
+        <div class="section-header">
+          <h2>Write to your future self</h2>
+          <p>Say the things you hope will be true one day. You can save it and choose when to read it again.</p>
+        </div>
+        <div class="letter-box">
+          <textarea id="letterText" rows="8" placeholder="Dear future me,&#10;&#10;I hope by the time you read this, you have finally achieved the things we once cried about..."></textarea>
+          <div class="letter-controls">
+            <div class="form-group">
+              <label for="letterDate">Open this letter on</label>
+              <input type="date" id="letterDate" />
+            </div>
+            <button class="btn btn-primary" id="saveLetter">Save letter</button>
+          </div>
+          <p class="letter-status" id="letterStatus" hidden></p>
+          <p class="letter-hint">After saving, you can download your letter as a .txt file anytime.</p>
+          <div class="saved-letter" id="savedLetter" hidden>
+            <h3>Your saved letter</h3>
+            <p id="savedLetterPreview"></p>
+            <p class="letter-meta" id="savedLetterMeta"></p>
+            <div class="letter-btn-row">
+              <a class="btn btn-primary" id="downloadLetter" href="#" role="button">Download as .txt</a>
+              <button class="btn btn-ghost" id="deleteLetter" type="button">Delete letter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community / You are not alone -->
+    <section class="community" id="community">
+      <div class="container">
+        <div class="section-header">
+          <h2>You are not alone</h2>
+          <p>Anonymous stories from people who almost put the dream down.</p>
+        </div>
+        <div class="community-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="dreams">Dreams almost abandoned</button>
+          <button class="filter-btn" data-filter="seasons">Difficult seasons</button>
+          <button class="filter-btn" data-filter="rejections">Rejections</button>
+          <button class="filter-btn" data-filter="hope">Found hope again</button>
+        </div>
+        <div class="stories-grid" id="communityStories">
+          <blockquote class="story" data-category="dreams">
+            <p>“I spent three years thinking I had failed. Then one ordinary Tuesday I opened my laptop again. I didn’t feel inspired. I just didn’t want the story to end there.”</p>
+            <footer>— A., 29 · Dream almost abandoned</footer>
+          </blockquote>
+          <blockquote class="story" data-category="seasons">
+            <p>“The hardest part wasn’t the rejection. It was the silence between the rejections. I kept going because I didn’t know how to explain to myself that I had stopped.”</p>
+            <footer>— M., 34 · Difficult season</footer>
+          </blockquote>
+          <blockquote class="story" data-category="hope">
+            <p>“I thought hope was supposed to feel bright. Sometimes it just feels like not deleting the folder.”</p>
+            <footer>— S., 26 · Found hope again</footer>
+          </blockquote>
+          <blockquote class="story" data-category="rejections">
+            <p>“I almost quit after the fifth ‘no’. What saved me was realizing that every ‘no’ was still proof that I was trying.”</p>
+            <footer>— T., 31 · Rejection</footer>
+          </blockquote>
+          <blockquote class="story" data-category="seasons">
+            <p>“Some days the only progress I made was not giving up completely. Looking back, those were some of the most important days.”</p>
+            <footer>— R., 27 · Difficult season</footer>
+          </blockquote>
+          <blockquote class="story" data-category="hope">
+            <p>“I came back to the same dream after eight months of silence. It was still waiting. Quieter, but still there.”</p>
+            <footer>— J., 33 · Found hope again</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- If today is especially hard -->
+    <section class="hard-day" id="hard-day">
+      <div class="container">
+        <div class="section-header">
+          <h2>If today is especially hard</h2>
+          <p>You don’t have to do everything. Just one small thing is enough.</p>
+        </div>
+        <div class="hard-day-grid">
+          <div class="hard-step">
+            <span class="step-num">1</span>
+            <h3>Breathe for 30 seconds</h3>
+            <p>Put your phone down. Inhale slowly through your nose, exhale through your mouth. That’s already something.</p>
+          </div>
+          <div class="hard-step">
+            <span class="step-num">2</span>
+            <h3>Drink a glass of water</h3>
+            <p>Your body and mind are connected. This tiny act of care counts more than it seems.</p>
+          </div>
+          <div class="hard-step">
+            <span class="step-num">3</span>
+            <h3>Write one honest sentence</h3>
+            <p>Open a note and write how you actually feel. No fixing required. Just naming it helps.</p>
+          </div>
+          <div class="hard-step">
+            <span class="step-num">4</span>
+            <h3>Reach out to one person</h3>
+            <p>A simple “Hey, today is hard” is enough. You don’t have to explain everything.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Things that helped -->
+    <section class="helped" id="helped">
+      <div class="container">
+        <div class="section-header">
+          <h2>Things that helped other people</h2>
+          <p>Simple ideas that made a difference for someone else.</p>
+        </div>
+        <ul class="helped-list">
+          <li>Taking a short walk without any destination</li>
+          <li>Deleting social media apps for a few days</li>
+          <li>Writing a letter to their future self</li>
+          <li>Listening to the same calm playlist every morning</li>
+          <li>Talking to one trusted person instead of keeping everything inside</li>
+          <li>Breaking a big goal into the smallest possible next step</li>
+          <li>Allowing themselves to rest without calling it failure</li>
+          <li>Coming back to their dream after months of silence</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Share your story -->
+    <section class="share" id="share">
+      <div class="container">
+        <div class="section-header">
+          <h2>Share your story</h2>
+          <p>This space is for quiet honesty. No pressure. Anonymous is okay.</p>
+        </div>
+        <form class="share-form" id="shareForm">
+          <div class="form-group">
+            <label for="storyText">Your story</label>
+            <textarea id="storyText" name="story" rows="5" placeholder="Write whatever feels true..." required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="storyName">Name or initial (letters only)</label>
+              <input type="text" id="storyName" name="name" placeholder="e.g. A. or Alex" pattern="[A-Za-zÀ-ÿ\s.'-]*" title="Letters only" />
+            </div>
+            <div class="form-group">
+              <label for="storyAge">Age (numbers only)</label>
+              <input type="text" id="storyAge" name="age" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 27" title="Numbers only" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Share quietly</button>
+          <p class="form-success" id="formSuccess" hidden>Thank you. Your story has been received with care.</p>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- Helpful Resources -->
+    <section class="resources" id="resources">
+      <div class="container">
+        <div class="section-header">
+          <h2>Helpful resources</h2>
+          <p>Gentle external places if you need more support.</p>
+        </div>
+        <div class="resources-grid">
+          <a class="resource-card theme-crisis" href="https://www.iasp.info/suicidalthoughts/" target="_blank" rel="noopener noreferrer">
+            <span class="resource-tag">Support</span>
+            <h3>If you’re in crisis</h3>
+            <p>International Association for Suicide Prevention — find local support resources.</p>
+            <span class="resource-url">https://www.iasp.info/suicidalthoughts/</span>
+            <span class="resource-link">Open link →</span>
+          </a>
+          <a class="resource-card theme-talk" href="https://www.7cups.com/" target="_blank" rel="noopener noreferrer">
+            <span class="resource-tag">Listening</span>
+            <h3>Someone to talk to</h3>
+            <p>7 Cups — free emotional support and trained listeners, available anytime.</p>
+            <span class="resource-url">https://www.7cups.com/</span>
+            <span class="resource-link">Open link →</span>
+          </a>
+          <a class="resource-card theme-calm" href="https://www.mindful.org/" target="_blank" rel="noopener noreferrer">
+            <span class="resource-tag">Calm</span>
+            <h3>Mindfulness & calm</h3>
+            <p>Mindful.org — simple practices and articles for difficult days.</p>
+            <span class="resource-url">https://www.mindful.org/</span>
+            <span class="resource-link">Open link →</span>
+          </a>
+          <a class="resource-card theme-growth" href="https://www.ted.com/topics/personal+growth" target="_blank" rel="noopener noreferrer">
+            <span class="resource-tag">Growth</span>
+            <h3>Personal growth talks</h3>
+            <p>TED talks on personal growth, resilience, and starting again.</p>
+            <span class="resource-url">https://www.ted.com/topics/personal+growth</span>
+            <span class="resource-link">Open link →</span>
+          </a>
+        </div>
+        <p class="resources-note">These links open in a new tab. HOPE is not affiliated with them — they are shared only as possible support.</p>
+      </div>
+    </section>
+
+    <!-- Paths / What this place is -->
+    <section class="paths" id="paths">
+      <div class="container">
+        <div class="section-header">
+          <h2>What this place can be for you</h2>
+          <p>Choose what you need right now.</p>
+        </div>
+        <div class="paths-grid">
+          <a href="#feel" class="path-card">
+            <h3>A peaceful sanctuary</h3>
+            <p>A quiet space for difficult seasons. No pressure to perform or improve.</p>
+          </a>
+          <a href="#community" class="path-card">
+            <h3>A community</h3>
+            <p>People sharing struggles and encouragement so you remember you’re not alone.</p>
+          </a>
+          <a href="#letter" class="path-card">
+            <h3>A growth space</h3>
+            <p>Letters, reminders, and small practices that help you keep going.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hold On -->
+    <section class="hold-on" id="hold-on">
+      <div class="container hold-on-inner">
+        <div class="hold-on-text">
+          <h2>If you’re still here…</h2>
+          <p>That already means something. You haven’t fully let go. That quiet part of you that still checks, still wonders, still hopes — protect it.</p>
+          <p>You don’t have to do anything big today. Just don’t close the door completely.</p>
+        </div>
+        <div class="hold-on-actions">
+          <div class="action-card">
+            <h3>Write it down</h3>
+            <p>Open a note and write one sentence about why the dream mattered in the first place.</p>
+          </div>
+          <div class="action-card">
+            <h3>Tell one person</h3>
+            <p>You don’t have to announce it to the world. Just one safe person is enough.</p>
+          </div>
+          <div class="action-card">
+            <h3>Do one small thing</h3>
+            <p>Not for progress. Just to remind yourself that the door is still open.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing">
+      <div class="container">
+        <h2>You are not alone in this.</h2>
+        <p>The people who make it are rarely the ones who never doubted. They are the ones who doubted and still stayed.</p>
+        <p class="closing-note">Keep the dream. Even if you’re only holding it with two fingers.</p>
+        <p class="closing-thanks" id="closingThanks">Thank you for being here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-logo">HOPE</p>
+      <p>A quiet place for people who are still holding on.</p>
+      <p class="footer-credit">Made with care by <strong id="footerName">[Your Name]</strong> · Free to use and share</p>
+      <p class="footer-version">Last updated · November 2026 · v2.0</p>
+    </div>
+  </footer>
+
+  <!-- Print-only area -->
+  <div id="printArea" class="print-area" hidden></div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
