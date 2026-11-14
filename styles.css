@@ -1065,3 +1065,9 @@ a:focus-visible {
   .back-to-top { bottom: 1.25rem; right: 1.25rem; }
   .letter-controls { flex-direction: column; align-items: stretch; }
 }
+
+/* Fix: Hide onboarding tip when dismissed */
+.onboarding-tip[hidden] {
+  display: none !important;
+}
+
