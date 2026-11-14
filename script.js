@@ -338,37 +338,55 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ===== Onboarding tooltip (first visit) =====
-const onboardingTip = document.getElementById('onboardingTip');
-const dismissTip = document.getElementById('dismissTip');
-let onboardingTimer = null;
+(function initOnboarding() {
+  const tip = document.getElementById('onboardingTip');
+  const btn = document.getElementById('dismissTip');
+  if (!tip) return;
 
-function dismissOnboarding() {
-  if (onboardingTimer) {
-    clearTimeout(onboardingTimer);
-    onboardingTimer = null;
-  }
-  if (onboardingTip) onboardingTip.hidden = true;
-  localStorage.setItem('hope-onboarding-seen', '1');
-}
+  let timer = null;
 
-if (onboardingTip && !localStorage.getItem('hope-onboarding-seen')) {
-  onboardingTimer = setTimeout(() => {
-    // Only show if still not dismissed
-    if (!localStorage.getItem('hope-onboarding-seen')) {
-      onboardingTip.hidden = false;
+  function dismiss() {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
     }
-  }, 1800);
-}
+    tip.hidden = true;
+    tip.style.display = 'none';
+    try { localStorage.setItem('hope-onboarding-seen', '1'); } catch (e) {}
+  }
 
-if (dismissTip) {
-  dismissTip.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dismissOnboarding();
-  });
-}
+  // Expose globally so inline handlers could call it if needed
+  window.dismissHopeTip = dismiss;
 
-// Also allow clicking outside the tip text area... tip itself stays until Got it
+  let seen = false;
+  try { seen = localStorage.getItem('hope-onboarding-seen') === '1'; } catch (e) {}
+
+  if (!seen) {
+    timer = setTimeout(function () {
+      try {
+        if (localStorage.getItem('hope-onboarding-seen') === '1') return;
+      } catch (e) {}
+      tip.hidden = false;
+      tip.style.display = '';
+    }, 1800);
+  } else {
+    tip.hidden = true;
+    tip.style.display = 'none';
+  }
+
+  if (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      dismiss();
+    });
+    // Extra safety for touch devices
+    btn.addEventListener('touchend', function (e) {
+      e.preventDefault();
+      dismiss();
+    }, { passive: false });
+  }
+})();
 
 
 // ===== Improved saved reminders empty state =====

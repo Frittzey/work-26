@@ -193,7 +193,7 @@ body {
 }
 
 .grain {
-  position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.035;
+  position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; pointer-events: none !important;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -842,9 +842,14 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 1rem;
   max-width: min(420px, 92%);
-  z-index: 120;
+  z-index: 10000;
   box-shadow: 0 12px 40px rgba(0,0,0,0.2);
   animation: tipIn 0.4s ease;
+  pointer-events: auto;
+}
+
+.onboarding-tip[hidden] {
+  display: none !important;
 }
 
 .onboarding-tip p {
@@ -854,7 +859,8 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
 }
 
-.onboarding-tip button {
+.onboarding-tip button,
+.dismiss-tip-btn {
   flex-shrink: 0;
   background: var(--bg);
   color: var(--text);
@@ -865,6 +871,9 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10001;
 }
 
 @keyframes tipIn {
@@ -1065,9 +1074,3 @@ a:focus-visible {
   .back-to-top { bottom: 1.25rem; right: 1.25rem; }
   .letter-controls { flex-direction: column; align-items: stretch; }
 }
-
-/* Fix: Hide onboarding tip when dismissed */
-.onboarding-tip[hidden] {
-  display: none !important;
-}
-
