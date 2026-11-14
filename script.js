@@ -338,30 +338,37 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ===== Onboarding tooltip (first visit) =====
-
-// ===== Onboarding tooltip (first visit) =====
 const onboardingTip = document.getElementById('onboardingTip');
 const dismissTip = document.getElementById('dismissTip');
+let onboardingTimer = null;
 
-let onboardingTimer;
-
-if (onboardingTip && dismissTip) {
-  const hasSeenTip = localStorage.getItem('hope-onboarding-seen');
-
-  if (hasSeenTip) {
-    onboardingTip.hidden = true;
-  } else {
-    onboardingTimer = setTimeout(() => {
-      onboardingTip.hidden = false;
-    }, 1800);
-  }
-
-  dismissTip.addEventListener('click', () => {
+function dismissOnboarding() {
+  if (onboardingTimer) {
     clearTimeout(onboardingTimer);
-    onboardingTip.hidden = true;
-    localStorage.setItem('hope-onboarding-seen', '1');
+    onboardingTimer = null;
+  }
+  if (onboardingTip) onboardingTip.hidden = true;
+  localStorage.setItem('hope-onboarding-seen', '1');
+}
+
+if (onboardingTip && !localStorage.getItem('hope-onboarding-seen')) {
+  onboardingTimer = setTimeout(() => {
+    // Only show if still not dismissed
+    if (!localStorage.getItem('hope-onboarding-seen')) {
+      onboardingTip.hidden = false;
+    }
+  }, 1800);
+}
+
+if (dismissTip) {
+  dismissTip.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dismissOnboarding();
   });
 }
+
+// Also allow clicking outside the tip text area... tip itself stays until Got it
 
 
 // ===== Improved saved reminders empty state =====
